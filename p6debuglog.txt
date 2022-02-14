@@ -1,0 +1,82 @@
+ gcc -g p6final.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8e5: file p6final.c, line 36.
+(gdb) r
+Starting program: /home/runner/IA1-Revision/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p6final.c:36
+36  {
+(gdb) n
+38      input_two_string(a, b);
+(gdb) s
+input_two_string (a=0x7fffa99577e0 "\a\247\300\355\070\177", 
+    b=0x7fffa9957850 "") at p6final.c:4
+4      printf("enter two strings\n");
+(gdb) n
+enter two strings
+5       scanf("%s%s",a,b);
+(gdb) n
+hello
+world
+6   }
+(gdb) n
+main () at p6final.c:40
+40      result=strcmp(a,b);
+(gdb) s
+strcmp (a=0x7fffa99577e0 "hello", b=0x7fffa9957850 "world")
+    at p6final.c:10
+10      for(int i=0;a[i]!='\0' || b[i]!='\0';i++)
+(gdb) n
+12              if(a[i]>b[i])
+(gdb) n
+16              else if(a[i]==b[i])
+(gdb) n
+21                  return -1;
+(gdb) n
+24  }
+(gdb) n
+main () at p6final.c:41
+41      output(a,b,result);
+(gdb) s
+output (a=0x7fffa99577e0 "hello", b=0x7fffa9957850 "world", result=-1)
+    at p6final.c:27
+27      if(result>0)
+(gdb) p a
+$1 = 0x7fffa99577e0 "hello"
+(gdb) p b
+$2 = 0x7fffa9957850 "world"
+(gdb) n
+29      else if(result==0)
+(gdb) n
+32          printf("%s is greater than %s",b,a);
+(gdb) n
+34  }
+(gdb) n
+main () at p6final.c:42
+42      return 0;
+(gdb) n
+43  }(gdb) n
+__libc_start_main (main=0x5606202008da <main>, argc=1, argv=0x7fffa99579a8, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7fffa9957998) at ../csu/libc-start.c:344
+344 ../csu/libc-start.c: No such file or directory.
+(gdb) n
+world is greater than hello[Inferior 1 (process 268) exited normally]
+(gdb) Quit

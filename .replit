@@ -1,2 +1,2 @@
-language = "bash"
-run = "a.out"
+language = "c"
+run = "./a.out"
