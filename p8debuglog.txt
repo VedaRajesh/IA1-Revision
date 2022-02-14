@@ -1,0 +1,137 @@
+ gcc -g p8final.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x9d6: file p8final.c, line 43.
+(gdb) r
+Starting program: /home/runner/IA1-Revision/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p8final.c:43
+43  {
+(gdb) n
+45      n=get_n();
+(gdb) s
+get_n () at p8final.c:7
+7   {
+(gdb) n
+9       printf("how many complex numbers?\n");
+(gdb) n
+how many complex numbers?
+10      scanf("%d",&n);
+(gdb) n
+2
+11      return n;
+(gdb) n
+12  }
+(gdb) p n
+$1 = 2
+(gdb) n
+main () at p8final.c:46
+46      Complex c[n],result;
+(gdb) s
+47      input_n_complex(n,c);
+(gdb) s
+input_n_complex (n=2, c=0x7ffd6fc78700) at p8final.c:15
+15      for(int i=0;i<n;i++)
+(gdb) n
+17              printf("enter real part\n");
+(gdb) n
+enter real part
+18              scanf("%f",&c[i].real);
+(gdb) n
+2
+19              printf("enter imaginary part \n");
+(gdb) n
+enter imaginary part 
+20              scanf("%f",&c[i].img);
+(gdb) n
+3
+15      for(int i=0;i<n;i++)
+(gdb) n
+17              printf("enter real part\n");
+(gdb) n
+enter real part
+18              scanf("%f",&c[i].real);
+(gdb) n
+4
+19              printf("enter imaginary part \n");
+(gdb) n
+enter imaginary part 
+20              scanf("%f",&c[i].img);
+(gdb) n
+5
+15      for(int i=0;i<n;i++)
+(gdb) n
+22  }
+(gdb) n
+main () at p8final.c:48
+48      result=add_n_complex(n,c);
+(gdb) s
+add_n_complex (n=2, c=0x7ffd6fc78700) at p8final.c:26
+26      b.real=0;b.img=0;
+(gdb) n
+27      for(int i=0;i<n;i++)
+(gdb) n
+29              b.real+=c[i].real;
+(gdb) n
+30              b.img+=c[i].img;
+(gdb) n
+27      for(int i=0;i<n;i++)
+(gdb) p c
+$2 = (Complex *) 0x7ffd6fc78700
+(gdb) n
+29              b.real+=c[i].real;
+(gdb) n
+30              b.img+=c[i].img;
+(gdb) p c.real
+$3 = 2
+(gdb) n
+27      for(int i=0;i<n;i++)
+(gdb) n
+32      return b;
+(gdb) n
+33  }
+(gdb) n
+main () at p8final.c:49
+49      output(n,c,result);
+(gdb) s
+output (n=2, c=0x7ffd6fc78700, result=...) at p8final.c:36
+36      printf("sum of ");
+(gdb) n
+37      for(int i=0;i<n-1;i++)
+(gdb) n
+39          printf("%0.2f+%0.2fi+",c[i].real,c[i].img);
+(gdb) nn
+Undefined command: "nn".  Try "help".
+(gdb) n
+37      for(int i=0;i<n-1;i++)
+(gdb) n
+40    printf("%0.2f+%0.2fi is %0.2f+%0.2f i",c[n-1].real,c[n-1].img,result.real,result.img);
+(gdb) n
+41  }
+(gdb) n
+main () at p8final.c:50
+50      return 0;
+(gdb) n
+51  }(gdb) n
+__libc_start_main (main=0x56540f2009c5 <main>, argc=1, argv=0x7ffd6fc78878, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7ffd6fc78868) at ../csu/libc-start.c:344
+344 ../csu/libc-start.c: No such file or directory.
+(gdb) n
+sum of 2.00+3.00i+4.00+5.00i is 6.00+8.00 i[Inferior 1 (process 784) exited normally]
